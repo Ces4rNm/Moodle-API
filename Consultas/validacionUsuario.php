@@ -13,7 +13,7 @@ $dbConn = connect($db);
     if ($res) {
         echo '{"code":"0", "msg":"done", "data":'.json_encode(json_encode($res)).'}';
     } else {
-        echo '{"code":"-1", "msg":"Correo y contraseña incorrecta", "data":"'.$res.'"}';
+        echo '{"code":"-1", "msg":"Correo y contraseña incorrecta", "data":'.json_encode(json_encode($res)).'}';
     }   
     exit();
 

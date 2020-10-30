@@ -5,8 +5,7 @@
 
     $dbConn = connect($db);
 
-    //Mostrar lista de post
-    $sql = $dbConn->prepare("SELECT ID_usuario, nombre, facultad FROM usuario WHERE rol=2");
+    $sql = $dbConn->prepare("SELECT a.nombre, b.cod_clase, b.descripcion, b.asistencia_profesor, c.nombre as asignatura, c.n_creditos FROM Usuario a, Clase b, Asignatura c WHERE a.ID_usuario=b.ID_docente and b.cod_asignatura=c.cod_asignatura");
     $sql->execute();
     $sql->setFetchMode(PDO::FETCH_ASSOC);
     header("HTTP/1.1 200 OK");

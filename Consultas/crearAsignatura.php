@@ -11,12 +11,12 @@
     bindAllValues($statement, $input);
     $statement->execute();
     $postId = $dbConn->lastInsertId();
-
-    if($postId){
-        $input['cod_asignatura'] = $postId;
-        header("HTTP/1.1 200 OK");
-        echo json_encode($input);
-        exit();
-	}
+    
+    header("HTTP/1.1 200 OK");
+    if($postId==0) {
+        echo '{"code":"0", "msg":"done", "data":'.json_encode(json_encode($input)).'}';
+    } else {
+        echo '{"code":"1", "msg":"No se pudo crear la asignatura", "data":'.json_encode(json_encode($input)).'}';
+    }
     
 ?>

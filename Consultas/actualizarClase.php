@@ -6,7 +6,7 @@
     $dbConn = connect($db);
 
     $input = $_POST;
-    $sql = "INSERT INTO horario (ID_docente, cod_asignatura, semestre, dia_semana, hora, salon) VALUES (:ID_docente, :cod_asignatura, :semestre, :dia_semana, :hora, :salon)";
+    $sql = "UPDATE clase SET estado = :estado  WHERE cod_clase=:cod_clase";
     $statement = $dbConn->prepare($sql);
     bindAllValues($statement, $input);
     $statement->execute();
@@ -16,7 +16,7 @@
     if($postId==0) {
         echo '{"code":"0", "msg":"done", "data":'.json_encode(json_encode($input)).'}';
     } else {
-        echo '{"code":"-1", "msg":"No se pudo crear el horario", "data":'.json_encode(json_encode($input)).'}';
+        echo '{"code":"-1", "msg":"No se pudo actualizar la clase", "data":'.json_encode(json_encode($input)).'}';
     }
     exit();
     
